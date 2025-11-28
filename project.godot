@@ -29,7 +29,11 @@ project/assembly_name="Slime_Seaborne"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/anim_sheet/plugin.cfg")
+enabled=PackedStringArray()
+
+[global_group]
+
+gamepieces="group for all gamepieces"
 
 [input]
 
