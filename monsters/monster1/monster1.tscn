@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dpmggtxa4gutj"]
+[gd_scene load_steps=34 format=3 uid="uid://dpmggtxa4gutj"]
 
 [ext_resource type="Script" uid="uid://dkwg0cc7g4exf" path="res://monsters/monster1/monster1.gd" id="1_df7aa"]
 [ext_resource type="Texture2D" uid="uid://6y5fxwylabrf" path="res://assets/enemies/Slime3/With_shadow/Slime3_Idle_with_shadow.png" id="2_rlllf"]
@@ -204,9 +204,14 @@ _data = {
 &"idle_down": SubResource("Animation_df7aa")
 }
 
-[node name="Enemy1" type="Node2D" node_paths=PackedStringArray("sprite") groups=["gamepieces"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7ddq"]
+size = Vector2(16, 16)
+
+[node name="Enemy1" type="Node2D" node_paths=PackedStringArray("sprite", "ray_cast") groups=["gamepieces"]]
 script = ExtResource("1_df7aa")
 sprite = NodePath("AnimatedSprite2D")
+move_time = null
+ray_cast = NodePath("RayCast2D")
 metadata/_custom_type_script = "uid://7xsb8hf3704r"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -216,10 +221,18 @@ animation = &"idle_down"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_s7le3")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.0015949011, -0.036144614)
-parameters/Walk/blend_position = Vector2(0.007974505, 0.18875504)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_8dj5n")
 }
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_y7ddq")

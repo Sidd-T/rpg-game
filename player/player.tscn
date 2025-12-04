@@ -806,10 +806,10 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_ym3cp")
 states/Walk/position = Vector2(510, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_kac8u"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_1hddd"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1crfn"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_i44jw"), "Walk", "End", SubResource("AnimationNodeStateMachineTransition_j16lc")]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "animation_tree") groups=["gamepieces"]]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "ray_cast") groups=["gamepieces"]]
 script = ExtResource("1_btcbx")
 sprite = NodePath("AnimatedSprite2D")
-animation_tree = NodePath("AnimationTree")
+ray_cast = NodePath("RayCast2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kdg72")
@@ -825,5 +825,9 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_hq2ud")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.0015949011, -0.036144614)
-parameters/Walk/blend_position = Vector2(0.007974505, 0.18875504)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collide_with_areas = true
