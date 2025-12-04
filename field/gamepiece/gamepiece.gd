@@ -72,8 +72,11 @@ func travel_curr_path() -> void:
 	if curr_path.is_empty():
 		return	
 	
-	## Get target pos
-	target_position = tile_map_layer.map_to_local(curr_path.front())
+	## Get target pos and start moving if not already
+	if is_moving == false:
+		target_position = tile_map_layer.map_to_local(curr_path.front())
+		is_moving = true
+		
 	## Get direction of travel	
 	dir = (target_position - global_position).normalized()	
 	
@@ -91,6 +94,7 @@ func travel_curr_path() -> void:
 		if sprite.global_position == global_position:
 			curr_path.pop_front()
 		
+		## if still points in path, target position is front of path
 		if curr_path.is_empty() == false:
 			target_position = tile_map_layer.map_to_local(curr_path.front())
 		else:

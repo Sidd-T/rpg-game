@@ -14,17 +14,12 @@ func _process(_delta: float) -> void:
 		return
 	
 	if Input.is_action_pressed("ui_up"):
-		move_in_dir(Vector2.UP)
+		step(Vector2.UP)
 	elif Input.is_action_pressed("ui_down"):
-		move_in_dir(Vector2.DOWN)
+		step(Vector2.DOWN)
 	elif Input.is_action_pressed("ui_left"):
-		move_in_dir(Vector2.LEFT)
+		step(Vector2.LEFT)
 	elif Input.is_action_pressed("ui_right"):
-		move_in_dir(Vector2.RIGHT)
+		step(Vector2.RIGHT)
 	else:
-		animationState.travel("Idle");
-
-func move_in_dir(direction: Vector2) -> void:
-	is_moving = true
-	step(direction)
-	
+		animationState.travel("Idle");	
